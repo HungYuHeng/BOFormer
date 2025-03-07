@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
@@ -175,7 +181,7 @@
         <h2 class="title is-3">Hypervolume Identifiability Issue</h2>
         <div class="content has-text-justified">
           <p>
-            In single-objective Bayesian optimization, an RL-based AF (e.g., FSAF (Hsieh et al., 2021)) takes the posterior mean and standard deviation and the best function value observed so far as input and then outputs the AF value. An direct extension to MOBO simply takes into account the same set of information about all the K objective functions. The hypervolume identifiability issue can be illustrated by comparing the hypervolume improvement incurred by the sample x3 in the two different scenarios below. Clearly, despite that the AF inputs at x3 are the same in both scenarios, the increases in hypervolume upon sampling x3 are rather different. Hence, the increase in hypervolume is not identifiable solely based on the AF input of the existing RL-based AFs.
+            In single-objective Bayesian optimization, an RL-based AF (e.g., FSAF (Hsieh et al., 2021)) takes the posterior mean and standard deviation and the best function value observed so far as input and then outputs the AF value. An direct extension to MOBO simply takes into account the same set of information about all the $K$ objective functions. The hypervolume identifiability issue can be illustrated by comparing the hypervolume improvement incurred by the sample $x_3$ in the two different scenarios below. Clearly, despite that the AF inputs at $x_3$ are the same in both scenarios, the increases in hypervolume upon sampling $x_3$ are rather different. Hence, the increase in hypervolume is not identifiable solely based on the AF input of the existing RL-based AFs.
           </p>
         </div>
         <div style="display: flex; justify-content: center;">
@@ -195,7 +201,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Approach: Generalized DQN Framework</h2>
+        <h2 class="title is-3">Learning AF via Non-Markovian Q-Network</h2>
         <div style="display: flex; justify-content: center;">
           <img src="static/images/BOFormer.jpg" 
              alt="HV" 
@@ -204,18 +210,40 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            To tackle hypervolume identifiability issue, we propose to rethink MOBO from the perspective of non-Markovian
-RL via sequence modeling. We propose BOFormer, which leverages the sequence
-modeling capability of the Transformer architecture and thereby minimizes the generalized temporal
-difference loss.
-            BOFormer comprises two distinct networks as
-shown above: The upper network functions as the policy
-network, utilizing the historical data and the Q-value
-predicted by the target network to estimate the Q-values
-for action selection. The lower network serves as the
-target network, responsible for constructing Q-values for
-past observation-action pairs.
+            To tackle hypervolume identifiability issue, we propose to rethink MOBO from the perspective of non-Markovian RL via sequence modeling. We propose BOFormer, which leverages the sequence modeling capability of the Transformer architecture and thereby minimizes the generalized temporal difference loss. BOFormer comprises two distinct networks as shown above: The upper network functions as the policy network, utilizing the historical data and the Q-value predicted by the target network to estimate the Q-values for action selection. The lower network serves as the target network, responsible for constructing Q-values for past observation-action pairs.
           </p>
+    
+          <h3>$Q$-Augmented Representation</h3> Define
+          \begin{align*}
+              y^{(i)*}_{t}:=\max\limits_{1\leq j\leq t}y^{(i)}_{i}, \forall i \in [1,\cdots,K]
+          \end{align*}
+          as the best observed function value of $i$-th objective up to time $t$. The observation-action pair for $x$ can be denoted by
+          \begin{equation*}
+              o_t(x) \equiv \Big\{\mu_t^{(i)}(x), \sigma_t^{(i)}(x),y_t^{(i)*} ,\frac{t}{T}\Big\}_{i\in [K]},
+          \end{equation*}
+          where $\mu_t^{(i)}(x):=\mathbb{E}[f_i(x)\rvert \mathcal{F}_t]$ and $\sigma_t^{(i)}(x):=\sqrt{\mathbb{V}[f_i(x)\rvert \mathcal{F}_t]}$ are the posterior predictive distribution under Gaussian Process (GP) prior. 
+          <h3>BOFormer as an Acquisition Function for MOBO</h3>
+          In BOFormer, we use the normalized hypervolume improvement as the reward, $\textit{i.e.}$, 
+          \begin{equation*}
+              r_t:=\frac{\text{HV}(\mathcal{X}_t)-\text{HV}(\mathcal{X}_{t-1})}{\text{HV}(\mathcal{X^*})-\text{HV}(\mathcal{X}_{t})}. 
+          \end{equation*}
+          Then, $h_t$, the history up to time $t$, is the concatenation of past observation-action pair representation defined as follows: 
+        \begin{align}
+            h_t  = \left\{\mu_j^{(i)}(x_j), \sigma_j^{(i)}(x_j), y_{j-1}^{(i)*}, j/t, r_i, Q_{\bar{\theta}}\right\}_{i\in[k], j\in[t-1]} \label{eq: state action}.
+        \end{align}
+        In non-Markovian RL, $Q_{\bar{\theta}}$ can be defined recursively, where 
+        \begin{align*}
+            Q_{\bar{\theta}}(h_t,o_t(x_t)):= Q_{\bar{\theta}}\left( \left\{ o_j(x_j), r_j, Q_{\bar{\theta}}(h_{j-1},o_{j-1}(x_{j-1})) \right\}_{j=1}^{t-1}, o_t(x_t)\right).
+        \end{align*}
+        Then, BOFormer selects the next sample point by letting $x_t = \text{argmax}_{x\in\mathcal{X}}Q_{\bar{\theta}}(h_t,o_t(x))$.
+        <h3>Off-Policy Learning and Prioritized 
+          Trajectory Replay Buffer</h3>
+          We extend the concept of Prioritized Experience Replay (PER) and introduce the Prioritized Trajectory Replay Buffer (PTRB). The detailed modifications are as follows: (i) Elements pushed into this buffer are entire trajectories $\tau = \{o_i(x_i),r_i\}_{i=1}^T$. (ii) The TD-error considered in PER is replaced by $\delta(Q_{\theta_t},\tau)$, which is the summation of the TD-error of the policy network for all transitions in this trajectory, $\textit{i.e.}$, 
+          \begin{align}
+              \delta(Q,\tau) & := \sum_{i=1}^{T-1} \big( Q\left( h_i, o_i(x_i)\right)  -
+              \big(r_i + \gamma \max_{x\in\mathbb{X}}Q_{\bar{\theta}}(h_{i+1}, o_{i+1}(x))\big) \big)^2.
+          \end{align}
+          Let $\mathcal{B}$ denote the batch sampled from PTRB. The loss function of BOFormer is defined as $L(\theta):=\sum_{\tau \in \mathcal{B}} \delta(Q_{\theta},\tau)$. For the training data, BOFormer is trained solely on synthetic GP functions, which are relatively cheap to generate (compared to real-world functions), and then be deployed to optimize unseen testing functions. 
         </div>
       </div>
     </div>
@@ -270,6 +298,23 @@ past observation-action pairs.
 </div>
 </div>
 </section>
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Conclusion</h2>
+      <div class="content has-text-justified">
+        <p>
+          In this paper, we address MOBO problems from the perspective of RL-based AF by identifying and tackling the inherent hypervolume identifiability issue. We achieve this goal by first presenting a generalized DQN framework and implementing it through BOFormer, which leverages the sequence modeling capability of Transformers and incorporates multiple enhancements for MOBO. Our experimental results show that BOFormer is indeed a promising approach for general-purpose multi-objective black-box optimization.
+        </p>
+      </div>
+  </div>
+</div>
+</div>
+</section>
+
+
 <!-- End image carousel -->
 
 <!--BibTex citation -->
