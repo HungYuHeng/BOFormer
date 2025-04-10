@@ -133,5 +133,179 @@ body {
   font-size: smaller;
 }
 
+/* Carousel styles */
+.carousel {
+    margin: 0 auto;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel .item {
+    padding: 20px;
+    text-align: center;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel .item img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+.carousel .subtitle {
+    margin-bottom: 20px;
+    color: #363636;
+    font-weight: 500;
+}
+
+/* Navigation arrows */
+.carousel .carousel-navigation {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 10;
+}
+
+.carousel .carousel-navigation .carousel-nav-left,
+.carousel .carousel-navigation .carousel-nav-right {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel .carousel-navigation .carousel-nav-left:hover,
+.carousel .carousel-navigation .carousel-nav-right:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Pagination dots */
+.carousel .carousel-pagination {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel .carousel-pagination .carousel-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel .carousel-pagination .carousel-bullet.is-active {
+    background: #3273dc;
+}
+
+/* Fade effect */
+.carousel .item {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel .item.is-active {
+    opacity: 1;
+}
+
+/* Simple Carousel Styles */
+.carousel-container {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel-slides {
+    position: relative;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    padding: 20px;
+}
+
+.carousel-slide.is-active {
+    opacity: 1;
+    position: relative;
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 10;
+}
+
+.carousel-nav button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-nav button:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-dot.is-active {
+    background: #3273dc;
+}
+
 
 

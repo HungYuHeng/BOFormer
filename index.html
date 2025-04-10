@@ -249,52 +249,276 @@
 </section>
 <!-- End image section -->
 
-<!-- Image carousel -->
+<!-- Results Section with Carousel -->
 <section class="hero is-small">
   <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Results</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/Table1.png" alt="MY ALT TEXT"/>
-        <!-- <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2> -->
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/Table2.png" alt="MY ALT TEXT"/>
-        <!-- <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2> -->
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/Fig3.png" alt="MY ALT TEXT"/>
-        <!-- <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2> -->
-      </div>
-      <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/Fig8.png" alt="MY ALT TEXT"/>
-      <!-- <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2> -->
-      
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/Fig5.png" alt="MY ALT TEXT"/>
-        <!-- <h2 class="subtitle has-text-centered">
-          Fourth image description.
-        </h2> -->
-        
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Results - Averaged Attained Hypervolume</h2>
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="carousel-container">
+            <div class="carousel-slides">
+              <div class="carousel-slide is-active">
+                <div class="has-text-centered">
+                  <h3 class="subtitle is-4">Hypervolume at Final Step - Synthetic Functions</h3>
+                  <img src="static/images/Table1.png" alt="Table 1: Results on Synthetic Functions"/>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="has-text-centered">
+                  <h3 class="subtitle is-4">Hypervolume at Final Step - HPO-3DGS</h3>
+                  <img src="static/images/Table2.png" alt="Table 2: Results on HPO-3DGS"/>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="has-text-centered">
+                  <h3 class="subtitle is-4">Synthetic Functions with Two Objectives</h3>
+                  <img src="static/images/Fig6.png" alt="Figure 3: Performance Comparison"/>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="has-text-centered">
+                  <h3 class="subtitle is-4">HPO-3DGS with Two Objectives</h3>
+                  <img src="static/images/Fig7.png" alt="Figure 3: Performance Comparison"/>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="has-text-centered">
+                  <h3 class="subtitle is-4">Synthetic Functions and HPO-3DGS with Three Objectives</h3>
+                  <img src="static/images/Fig8.png" alt="Figure 3: Performance Comparison"/>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-nav">
+              <button class="carousel-nav-prev">❮</button>
+              <button class="carousel-nav-next">❯</button>
+            </div>
+            <div class="carousel-dots">
+              <span class="carousel-dot is-active" data-slide="0"></span>
+              <span class="carousel-dot" data-slide="1"></span>
+              <span class="carousel-dot" data-slide="2"></span>
+              <span class="carousel-dot" data-slide="3"></span>
+              <span class="carousel-dot" data-slide="4"></span>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
   </div>
-</div>
-</div>
+</section>
+
+<!-- GIFs Section -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Lego - Visualization of Optimization Process</h2>
+      <div class="columns is-centered">
+        <div class="column is-12">
+          <!-- Scatter Plot -->
+          <div class="has-text-centered" style="margin-bottom: 2rem;">
+            <img src="static/images/lego_scatter.png" alt="Lego Scatter Plot" style="max-width: 100%;"/>
+          </div>
+          
+          <!-- BOFormer Row -->
+          <h3 class="subtitle is-4 has-text-centered">BOFormer</h3>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_BOFormer_1.gif" alt="BOFormer Optimization Step 1"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_BOFormer_2.gif" alt="BOFormer Optimization Step 2"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_BOFormer_3.gif" alt="BOFormer Optimization Step 3"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_BOFormer_4.gif" alt="BOFormer Optimization Step 4"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_BOFormer_5.gif" alt="BOFormer Optimization Step 5"/>
+              </div>
+            </div>
+          </div>
+          
+          <!-- qNEHVI Row -->
+          <h3 class="subtitle is-4 has-text-centered">qNEHVI</h3>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_qNEHVI_1.gif" alt="qNEHVI Optimization Step 1"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_qNEHVI_2.gif" alt="qNEHVI Optimization Step 2"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_qNEHVI_3.gif" alt="qNEHVI Optimization Step 3"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_qNEHVI_4.gif" alt="qNEHVI Optimization Step 4"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_qNEHVI_5.gif" alt="qNEHVI Optimization Step 5"/>
+              </div>
+            </div>
+          </div>
+          
+          <!-- optformer_qNEHVI Row -->
+          <h3 class="subtitle is-4 has-text-centered">OptFormer</h3>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_optformer_1.gif" alt="optformer Optimization Step 1"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_optformer_2.gif" alt="optformer Optimization Step 2"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_optformer_3.gif" alt="optformer Optimization Step 3"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_optformer_4.gif" alt="optformer Optimization Step 4"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/lego_optformer_5.gif" alt="optformer Optimization Step 5"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Materials GIFs Section -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Materials - Visualization of Optimization Process</h2>
+      <div class="columns is-centered">
+        <div class="column is-12">
+          <!-- Scatter Plot -->
+          <div class="has-text-centered" style="margin-bottom: 2rem;">
+            <img src="static/images/materials_scatter.png" alt="Materials Scatter Plot" style="max-width: 100%;"/>
+          </div>
+          
+          <!-- BOFormer Row -->
+          <h3 class="subtitle is-4 has-text-centered">BOFormer</h3>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_BOFormer_1.gif" alt="BOFormer Optimization Step 1"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_BOFormer_2.gif" alt="BOFormer Optimization Step 2"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_BOFormer_3.gif" alt="BOFormer Optimization Step 3"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_BOFormer_4.gif" alt="BOFormer Optimization Step 4"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_BOFormer_5.gif" alt="BOFormer Optimization Step 5"/>
+              </div>
+            </div>
+          </div>
+          
+          <!-- qNEHVI Row -->
+          <h3 class="subtitle is-4 has-text-centered">qNEHVI</h3>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_qNEHVI_1.gif" alt="qNEHVI Optimization Step 1"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_qNEHVI_2.gif" alt="qNEHVI Optimization Step 2"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_qNEHVI_3.gif" alt="qNEHVI Optimization Step 3"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_qNEHVI_4.gif" alt="qNEHVI Optimization Step 4"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_qNEHVI_5.gif" alt="qNEHVI Optimization Step 5"/>
+              </div>
+            </div>
+          </div>
+          
+          <!-- optformer_qNEHVI Row -->
+          <h3 class="subtitle is-4 has-text-centered">OptFormer</h3>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_optformer_1.gif" alt="optformer Optimization Step 1"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_optformer_2.gif" alt="optformer Optimization Step 2"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_optformer_3.gif" alt="optformer Optimization Step 3"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_optformer_4.gif" alt="optformer Optimization Step 4"/>
+              </div>
+            </div>
+            <div class="column is-2">
+              <div class="has-text-centered">
+                <img src="static/images/materials_optformer_5.gif" alt="optformer Optimization Step 5"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Image carousel -->
@@ -339,7 +563,7 @@
         <div class="content">
 
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
             You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
